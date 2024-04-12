@@ -7,3 +7,5 @@ export * from "./ui/NotFound/NotFound";
 export * from "./ui/Title/Title";
 
 export * from "./ui/Sidebar/Sidebar";
+
+export * from "./product/Size-Selector/SizeSelector"

@@ -1,3 +1,4 @@
+import { SizeSelector } from "@/components";
 import { titleFont } from "@/config/fonts";
 import { initialData } from "@/seed/seed";
 import { notFound } from "next/navigation";
@@ -29,7 +30,10 @@ export default function ProductPage({ params }: Props) {
         </h1>
         <p className="mb-5 text-lg ">${product.price}</p>
         {/* Selector de tallas */}
-
+        <SizeSelector
+          selectedSize={product.sizes[0]}
+          availableSizes={product.sizes}
+        />
         {/* Selector de cantidad */}
 
         {/* Boton */}

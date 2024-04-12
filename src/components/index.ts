@@ -9,3 +9,4 @@ export * from "./ui/Title/Title";
 export * from "./ui/Sidebar/Sidebar";
 
 export * from "./product/Size-Selector/SizeSelector"
+export * from "./product/Quantity-Selector/QuantitySelector"

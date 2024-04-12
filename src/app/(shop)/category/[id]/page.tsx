@@ -1,7 +1,20 @@
-export default function CheckoutPage() {
+import { notFound } from "next/navigation";
+
+interface Props {
+  params: { id: string };
+}
+
+export default function CheckoutPage({ params }: Props) {
+  const { id } = params;
+
+  if (id === "kids") {
+    notFound();
+  }
   return (
     <div>
-      <h1>Checkout Page</h1>
+      <h1>
+        Category Page <span className="capitalize">{id}</span>
+      </h1>
     </div>
   );
 }

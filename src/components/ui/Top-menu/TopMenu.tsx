@@ -30,7 +30,7 @@ export const TopMenu = () => {
         </Link>
         <Link
           className="m-2 rounded-md p-2 transition-all hover:bg-gray-100"
-          href={"/category/children"}
+          href={"/category/kids"}
         >
           Niños
         </Link>
@@ -42,7 +42,7 @@ export const TopMenu = () => {
         </Link>
         <Link href={"/cart"} className="mx-2">
           <div className="relative">
-            <span className="absolute -right-2 -top-2 px-1 rounded-full bg-blue-700 px-1 text-xs font-bold text-white">
+            <span className="absolute -right-2 -top-2 px-1 rounded-full bg-blue-700 text-xs font-bold text-white">
               3
             </span>
             <IoCartOutline className="h-5 w-5" />

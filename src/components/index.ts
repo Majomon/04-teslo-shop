@@ -8,6 +8,8 @@ export * from "./ui/Title/Title";
 
 export * from "./ui/Sidebar/Sidebar";
 
+export * from "./ui/Footer/Footer";
+
 export * from "./product/Size-Selector/SizeSelector";
 export * from "./product/Quantity-Selector/QuantitySelector";
 export * from "./product/SlideShow/ProductSlideShow";

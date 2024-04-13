@@ -1,4 +1,4 @@
-import { QuantitySelector, SizeSelector } from "@/components";
+import { ProductSlideShow, QuantitySelector, SizeSelector } from "@/components";
 import { titleFont } from "@/config/fonts";
 import { initialData } from "@/seed/seed";
 import { notFound } from "next/navigation";
@@ -21,7 +21,7 @@ export default function ProductPage({ params }: Props) {
     <div className="mb-20 mt-5 grid grid-cols-1 gap-3 md:grid-cols-3">
       {/* SlideShow */}
       <div className="col-span-1 md:col-span-2">
-        <h1>Gola mundo</h1>
+        <ProductSlideShow title={product.title} images={product.images} />
       </div>
       {/* Detalles */}
       <div className="col-span-1 px-5">
@@ -35,7 +35,7 @@ export default function ProductPage({ params }: Props) {
           availableSizes={product.sizes}
         />
         {/* Selector de cantidad */}
-        <QuantitySelector quantity={2}/>
+        <QuantitySelector quantity={2} />
         {/* Boton */}
         <button className="btn-primary my-5">Agregar al carrito</button>
 

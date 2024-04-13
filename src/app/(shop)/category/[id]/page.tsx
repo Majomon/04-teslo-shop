@@ -10,7 +10,7 @@ interface Props {
   params: { id: Category };
 }
 
-export default function CheckoutPage({ params }: Props) {
+export default function CategoryIdPage({ params }: Props) {
   const { id } = params;
 
   // if (id === "kids") {

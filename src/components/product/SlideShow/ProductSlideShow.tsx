@@ -5,7 +5,7 @@ import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import { Swiper as SwiperObject } from "swiper";
-import { FreeMode, Navigation, Thumbs } from "swiper/modules";
+import { Autoplay, FreeMode, Navigation, Thumbs } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "./slideshow.css";
 import Image from "next/image";
@@ -29,8 +29,9 @@ export const ProductSlideShow = ({ images, title, className }: Props) => {
         }
         spaceBetween={10}
         navigation={true}
+        autoplay={{ delay: 2500 }}
         thumbs={{ swiper: thumbsSwiper }}
-        modules={[FreeMode, Navigation, Thumbs]}
+        modules={[FreeMode, Navigation, Thumbs, Autoplay]}
         className="mySwiper2"
       >
         {images.map((image) => (
@@ -40,7 +41,28 @@ export const ProductSlideShow = ({ images, title, className }: Props) => {
               height={800}
               src={`/products/${image}`}
               alt={title}
-              className="rounded-lg "
+              className="rounded-lg object-fill"
+            />
+          </SwiperSlide>
+        ))}
+      </Swiper>
+      <Swiper
+        onSwiper={setThumbsSwiper}
+        spaceBetween={10}
+        slidesPerView={4}
+        freeMode={true}
+        watchSlidesProgress={true}
+        modules={[FreeMode, Navigation, Thumbs]}
+        className="mySwiper"
+      >
+        {images.map((image) => (
+          <SwiperSlide key={image}>
+            <Image
+              width={300}
+              height={300}
+              src={`/products/${image}`}
+              alt={title}
+              className="rounded-lg object-fill"
             />
           </SwiperSlide>
         ))}

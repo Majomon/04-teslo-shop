@@ -1,13 +1,10 @@
-export const revalidate = 60 // 60 segundos
+export const revalidate = 60; // 60 segundos
 
 import { getPaginatedProductsWithImages } from "@/actions";
 import { Pagination, Title } from "@/components";
 import { ProductGrid } from "@/components/products/ProductGrid/ProductGrid";
-import { initialData } from "@/seed/seed";
 import { Gender } from "@prisma/client";
 import { redirect } from "next/navigation";
-
-const seedProducts = initialData.products;
 
 interface Props {
   params: { gender: string };

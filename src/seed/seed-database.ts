@@ -3,11 +3,11 @@ import { initialData } from "./seed";
 
 async function main() {
   // 1. Borrar registros previos
-  await Promise.all([
-    prisma.productImage.deleteMany(),
-    prisma.product.deleteMany(),
-    prisma.category.deleteMany(),
-  ]);
+  // await Promise.all([
+  await prisma.productImage.deleteMany();
+  await prisma.product.deleteMany();
+  await prisma.category.deleteMany();
+  // ]);
 
   // 2. Crear categorias
   const { categories, products } = initialData;
@@ -27,14 +27,25 @@ async function main() {
     },
     {} as Record<string, string>, // <string=shirt, string=categoryId>
   );
+
   // Productos
   products.forEach(async (product) => {
     const { type, images, ...rest } = product;
     const dbProduct = await prisma.product.create({
       data: { ...rest, categoryId: categoriesMap[type] },
     });
+
+    const imagesData = images.map((image) => ({
+      url: image,
+      productId: dbProduct.id,
+    }));
+
+    await prisma.productImage.createMany({
+      data: imagesData,
+    });
   });
 
+  /* Images */
   /*   await prisma.category.create({
     data: {
       name: "Shirts",

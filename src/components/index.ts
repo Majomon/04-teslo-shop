@@ -5,6 +5,7 @@ export * from "./product/Quantity-Selector/QuantitySelector";
 export * from "./product/Size-Selector/SizeSelector";
 export * from "./product/SlideShow/ProductMobileSlideShow";
 export * from "./product/SlideShow/ProductSlideShow";
+export * from "./product/StockLabel/StockLabel"
 
 export * from "./ui/Footer/Footer";
 export * from "./ui/NotFound/NotFound";

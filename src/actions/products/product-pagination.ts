@@ -15,6 +15,13 @@ export const getPaginatedProductsWithImages = async () => {
       },
     });
 
-    console.log(products);
-  } catch (error) {}
+    return {
+      products: products.map((product) => ({
+        ...product,
+        images: product.ProductImage.map((image) => image.url),
+      })),
+    };
+  } catch (error) {
+    throw new Error("No se pudo cargas los productos");
+  }
 };

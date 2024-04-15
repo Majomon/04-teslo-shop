@@ -27,7 +27,13 @@ async function main() {
     },
     {} as Record<string, string>, // <string=shirt, string=categoryId>
   );
-  console.log(categoriesMap);
+  // Productos
+  products.forEach(async (product) => {
+    const { type, images, ...rest } = product;
+    const dbProduct = await prisma.product.create({
+      data: { ...rest, categoryId: categoriesMap[type] },
+    });
+  });
 
   /*   await prisma.category.create({
     data: {

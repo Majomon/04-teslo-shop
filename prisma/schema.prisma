@@ -3,14 +3,51 @@ generator client {
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
-model User {
-  id        Int      @id @default(autoincrement())
-  name      String
-  email     String   @unique
-  image     String
-  createdAt DateTime @default(now())
+enum Size {
+  XS
+  S
+  M
+  L
+  XL
+  XXL
+  XXXL
+}
+
+enum Gender {
+  men
+  women
+  kid
+  unisex
+}
+
+model Category {
+  id        String    @id @default(uuid())
+  name      String    @unique
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  // Relacion de producto con producto
+  Product   Product[]
+}
+
+model Product {
+  id          String   @id @default(uuid())
+  title       String
+  description String
+  inStock     Int
+  price       Float    @default(0)
+  sizes       Size[]
+  slug        String   @unique
+  tags        String[] @default([])
+  gender      Gender
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  category   Category @relation(fields: [categoryId], references: [id])
+  categoryId String
+
+  @@index([gender])
 }

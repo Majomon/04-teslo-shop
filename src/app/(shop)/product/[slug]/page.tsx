@@ -11,7 +11,7 @@ import {
 import { titleFont } from "@/config/fonts";
 import { Metadata, ResolvingMetadata } from "next";
 import { notFound } from "next/navigation";
-import { AddToCart } from "./ui/addToCart";
+import { AddToCart } from "./ui/AddToCart";
 
 interface Props {
   params: {

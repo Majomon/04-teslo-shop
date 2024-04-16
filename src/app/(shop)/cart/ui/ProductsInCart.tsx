@@ -10,6 +10,7 @@ export const ProductsInCart = () => {
   const updateProductQuantity = useCartStore(
     (state) => state.updateProductQuantity,
   );
+  const removeProduct = useCartStore((state) => state.removeProduct);
   const productsInCart = useCartStore((state) => state.cart);
   const [loaded, setLoaded] = useState(false);
 
@@ -41,7 +42,7 @@ export const ProductsInCart = () => {
               className="cursor-pointer hover:underline"
               href={`/product/${product.slug}`}
             >
-              {product.title}
+              {product.size} - {product.title}
             </Link>
             <p>{product.price}</p>
             <QuantitySelector
@@ -50,7 +51,12 @@ export const ProductsInCart = () => {
                 updateProductQuantity(product, quantity)
               }
             />
-            <button className="mt-3 underline">Remover</button>
+            <button
+              onClick={() => removeProduct(product)}
+              className="mt-3 underline"
+            >
+              Remover
+            </button>
           </div>
         </div>
       ))}

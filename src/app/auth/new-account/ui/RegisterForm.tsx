@@ -1,8 +1,10 @@
 "use client";
 
 import { registerUser } from "@/actions";
+import { login } from "@/actions/auth/login";
 import clsx from "clsx";
 import Link from "next/link";
+// import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 type FormInputs = {
@@ -12,6 +14,7 @@ type FormInputs = {
 };
 
 export const RegisterForm = () => {
+  //   const router = useRouter();
   const [errorMessage, setErrorMessage] = useState("");
   const {
     register,
@@ -29,7 +32,9 @@ export const RegisterForm = () => {
       return;
     }
 
-    console.log({ resp });
+    await login(email.toLowerCase(), password);
+    // router.replace("/");
+    window.location.replace("/");
   };
 
   return (

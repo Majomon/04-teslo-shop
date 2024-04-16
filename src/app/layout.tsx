@@ -3,9 +3,9 @@ import { inter } from "@/config/fonts";
 import "./globals.css";
 
 export const metadata = {
-  title: 'Teslo | Shop',
-  description: 'Tienda de productos',
- };
+  title: { template: "%s - Teslo | Shop", default: "Home - Teslo | Shop" },
+  description: "Tienda de productos",
+};
 
 export default function RootLayout({
   children,

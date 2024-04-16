@@ -20,7 +20,9 @@ export const Sidebar = () => {
   const closeSideMenu = useUiStore((state) => state.closeSideMenu);
 
   const { data: session } = useSession();
-  
+  // !! ->Doble negación
+  const isAuthenticated = !!session?.user;
+
   return (
     <div className="">
       {/* Black background */}
@@ -72,21 +74,27 @@ export const Sidebar = () => {
           <IoTicketOutline size={26} />
           <span className="ml-3 text-sm">Ordenes</span>
         </Link>
-        <Link
-          href={"/auth/login"}
-          className="mt-4 flex items-center rounded p-2 transition-all hover:bg-gray-100"
-          onClick={closeSideMenu}
-        >
-          <IoLogInOutline size={26} />
-          <span className="ml-3 text-sm">Ingresar</span>
-        </Link>
-        <button
-          className="mt-4 flex w-full items-center rounded p-2 transition-all hover:bg-gray-100"
-          onClick={() => logout()}
-        >
-          <IoLogOutOutline size={26} />
-          <span className="ml-3 text-sm">Salir</span>
-        </button>
+        {isAuthenticated && (
+          <button
+            className="mt-4 flex w-full items-center rounded p-2 transition-all hover:bg-gray-100"
+            onClick={() => logout()}
+          >
+            <IoLogOutOutline size={26} />
+            <span className="ml-3 text-sm">Salir</span>
+          </button>
+        )}
+
+        {!isAuthenticated && (
+          <Link
+            href={"/auth/login"}
+            className="mt-4 flex items-center rounded p-2 transition-all hover:bg-gray-100"
+            onClick={closeSideMenu}
+          >
+            <IoLogInOutline size={26} />
+            <span className="ml-3 text-sm">Ingresar</span>
+          </Link>
+        )}
+
         {/* Line separator */}
         <div className="my-10 h-px w-full bg-gray-200">
           <Link

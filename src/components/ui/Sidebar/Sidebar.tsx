@@ -69,8 +69,9 @@ export const Sidebar = () => {
           <span className="ml-3 text-sm">Ordenes</span>
         </Link>
         <Link
-          href={"/"}
+          href={"/auth/login"}
           className="mt-4 flex items-center rounded p-2 transition-all hover:bg-gray-100"
+          onClick={closeSideMenu}
         >
           <IoLogInOutline size={26} />
           <span className="ml-3 text-sm">Ingresar</span>

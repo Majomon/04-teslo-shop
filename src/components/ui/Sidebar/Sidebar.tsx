@@ -22,6 +22,7 @@ export const Sidebar = () => {
   const { data: session } = useSession();
   // !! ->Doble negación
   const isAuthenticated = !!session?.user;
+  const isAdmin = session?.user.role === "admin";
 
   return (
     <div className="">
@@ -58,30 +59,32 @@ export const Sidebar = () => {
           />
         </div>
 
-        {/* Menú */}
-        <Link
-          href={"/profile"}
-          onClick={closeSideMenu}
-          className="mt-4 flex items-center rounded p-2 transition-all hover:bg-gray-100"
-        >
-          <IoPersonOutline size={26} />
-          <span className="ml-3 text-sm">Perfil</span>
-        </Link>
-        <Link
-          href={"/"}
-          className="mt-4 flex items-center rounded p-2 transition-all hover:bg-gray-100"
-        >
-          <IoTicketOutline size={26} />
-          <span className="ml-3 text-sm">Ordenes</span>
-        </Link>
         {isAuthenticated && (
-          <button
-            className="mt-4 flex w-full items-center rounded p-2 transition-all hover:bg-gray-100"
-            onClick={() => logout()}
-          >
-            <IoLogOutOutline size={26} />
-            <span className="ml-3 text-sm">Salir</span>
-          </button>
+          <>
+            {/* Menú */}
+            <Link
+              href={"/profile"}
+              onClick={closeSideMenu}
+              className="mt-4 flex items-center rounded p-2 transition-all hover:bg-gray-100"
+            >
+              <IoPersonOutline size={26} />
+              <span className="ml-3 text-sm">Perfil</span>
+            </Link>
+            <Link
+              href={"/"}
+              className="mt-4 flex items-center rounded p-2 transition-all hover:bg-gray-100"
+            >
+              <IoTicketOutline size={26} />
+              <span className="ml-3 text-sm">Ordenes</span>
+            </Link>
+            <button
+              className="mt-4 flex w-full items-center rounded p-2 transition-all hover:bg-gray-100"
+              onClick={() => logout()}
+            >
+              <IoLogOutOutline size={26} />
+              <span className="ml-3 text-sm">Salir</span>
+            </button>
+          </>
         )}
 
         {!isAuthenticated && (
@@ -95,30 +98,34 @@ export const Sidebar = () => {
           </Link>
         )}
 
-        {/* Line separator */}
-        <div className="my-10 h-px w-full bg-gray-200">
-          <Link
-            href={"/"}
-            className="mt-4 flex items-center rounded p-2 transition-all hover:bg-gray-100"
-          >
-            <IoShirtOutline size={26} />
-            <span className="ml-3 text-sm">Productos</span>
-          </Link>
-          <Link
-            href={"/"}
-            className="mt-4 flex items-center rounded p-2 transition-all hover:bg-gray-100"
-          >
-            <IoTicketOutline size={26} />
-            <span className="ml-3 text-sm">Ordenes</span>
-          </Link>
-          <Link
-            href={"/"}
-            className="mt-4 flex items-center rounded p-2 transition-all hover:bg-gray-100"
-          >
-            <IoPeopleOutline size={26} />
-            <span className="ml-3 text-sm">Usuarios</span>
-          </Link>
-        </div>
+        {isAdmin && (
+          <>
+            {/* Line separator */}
+            <div className="my-10 h-px w-full bg-gray-200">
+              <Link
+                href={"/"}
+                className="mt-4 flex items-center rounded p-2 transition-all hover:bg-gray-100"
+              >
+                <IoShirtOutline size={26} />
+                <span className="ml-3 text-sm">Productos</span>
+              </Link>
+              <Link
+                href={"/"}
+                className="mt-4 flex items-center rounded p-2 transition-all hover:bg-gray-100"
+              >
+                <IoTicketOutline size={26} />
+                <span className="ml-3 text-sm">Ordenes</span>
+              </Link>
+              <Link
+                href={"/"}
+                className="mt-4 flex items-center rounded p-2 transition-all hover:bg-gray-100"
+              >
+                <IoPeopleOutline size={26} />
+                <span className="ml-3 text-sm">Usuarios</span>
+              </Link>
+            </div>
+          </>
+        )}
       </nav>
     </div>
   );

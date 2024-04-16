@@ -8,31 +8,36 @@ interface State {
 }
 
 export const useCartStore = create<State>()(
-  // persist
-  (set, get) => ({
-  cart: [],
-  addProductToCart: (product: CartProduct) => {
-    const { cart } = get();
+  // El persist para el localstorage
+  persist(
+    (set, get) => ({
+      cart: [],
+      addProductToCart: (product: CartProduct) => {
+        const { cart } = get();
 
-    // 1.Revisar si el producto existe en el carrito con la talla seleccionada
-    const productInCart = cart.some(
-      (item) => item.id === product.id && item.size === product.size,
-    );
+        // 1.Revisar si el producto existe en el carrito con la talla seleccionada
+        const productInCart = cart.some(
+          (item) => item.id === product.id && item.size === product.size,
+        );
 
-    if (!productInCart) {
-      set({ cart: [...cart, product] });
-      return;
-    }
+        if (!productInCart) {
+          set({ cart: [...cart, product] });
+          return;
+        }
 
-    // 2. Se que el producto existe por talla... tengo que actualizar la cantidad
-    const updateCartProducts = cart.map((item) => {
-      if (item.id === product.id && item.size === product.size) {
-        return { ...item, quantity: item.quantity + product.quantity };
-      }
+        // 2. Se que el producto existe por talla... tengo que actualizar la cantidad
+        const updateCartProducts = cart.map((item) => {
+          if (item.id === product.id && item.size === product.size) {
+            return { ...item, quantity: item.quantity + product.quantity };
+          }
 
-      return item;
-    });
+          return item;
+        });
 
-    set({ cart: updateCartProducts });
-  },
-}));
+        set({ cart: updateCartProducts });
+      },
+    }),
+    // La clave con la que se guarda en el localstorage
+    { name: "shopping-cart" },
+  ),
+);

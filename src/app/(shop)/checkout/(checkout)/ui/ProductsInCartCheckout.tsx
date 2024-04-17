@@ -3,9 +3,11 @@
 import { useCartStore } from "@/store";
 import { currencyFormat } from "@/utils";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export const ProductsInCartCheckout = () => {
+  const router = useRouter();
   const productsInCart = useCartStore((state) => state.cart);
   const [loaded, setLoaded] = useState(false);
 
@@ -14,6 +16,9 @@ export const ProductsInCartCheckout = () => {
   }, []);
 
   if (!loaded) {
+    if (productsInCart.length < 1) {
+      router.replace("/");
+    }
     return <p>Espere...</p>;
   }
 

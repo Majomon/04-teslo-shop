@@ -1,8 +1,7 @@
 import { Title } from "@/components";
-import Image from "next/image";
 import Link from "next/link";
-import { ProductsInCartCheckout } from "./ui/ProductsInCartCheckout";
 import { PlaceOrder } from "./ui/PlaceOrder";
+import { ProductsInCartCheckout } from "./ui/ProductsInCartCheckout";
 
 export default function CheckoutPage() {
   return (

@@ -54,5 +54,34 @@ export const placeOrder = async (
   );
 
   //   Crear la transacción de la base de datos
-  
+  const prismaTx = await prisma.$transaction(async (tx) => {
+    // 1. Actualizar el stock de los productos
+
+    // 2. Crear el encabezado de la orden - Detalles
+    const order = await tx.order.create({
+      data: {
+        userId: userId,
+        itemsInOrder: itemsInOrder,
+        subTotal: subTotal,
+        tax: tax,
+        total: total,
+
+        OrderItem: {
+          createMany: {
+            data: productsId.map((p) => ({
+              quantity: p.quantity,
+              size: p.size,
+              productId: p.productId,
+              price:
+                products.find((product) => product.id === p.productId)?.price ??
+                0,
+            })),
+          },
+        },
+      },
+    });
+    // 3. Crear la dirección de la orden
+
+    return { order: order };
+  });
 };

@@ -52,4 +52,40 @@ export const placeOrder = async (
     },
     { subTotal: 0, tax: 0, total: 0 },
   );
+
+  //   Crear la transacción en la base de datos
+
+  const prismaTx = await prisma.$transaction(async (tx) => {
+    // Actualizar el stock de los productos
+
+    // Crear la orden - Encabezado - Detalles
+    const order = await tx.order.create({
+      data: {
+        userId: userId,
+        itemsInOrder: itemsInOrder,
+        subTotal: subTotal,
+        tax: tax,
+        total: total,
+
+        OrderItem: {
+          createMany: {
+            data: productsIds.map((p) => ({
+              quantity: p.quantity,
+              productId: p.productId,
+              size: p.size,
+              price:
+                products.find((product) => product.id === p.productId)?.price ??
+                0,
+            })),
+          },
+        },
+      },
+    });
+
+    // Crear la dirección de la orden
+
+    return {
+      order: order,
+    };
+  });
 };

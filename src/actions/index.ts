@@ -8,4 +8,5 @@ export { getPaginatedProductsWithImages } from "./products/product-pagination";
 
 export { getCountries } from "./country/get-countries";
 
-export * from "./address/set-user-address";
+export { setUserAddress } from "./address/set-user-address";
+export { deleteUserAddress } from "./address/delete-user-address";

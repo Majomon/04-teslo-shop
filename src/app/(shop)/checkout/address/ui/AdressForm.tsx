@@ -6,6 +6,7 @@ import clsx from "clsx";
 import { useSession } from "next-auth/react";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { deleteUserAddress } from "../../../../../actions/address/delete-user-address";
 
 type FormInputs = {
   firstName: string;
@@ -43,9 +44,11 @@ export const AdressForm = ({ countries }: Props) => {
   const onSubmit = (data: FormInputs) => {
     setAddress(data);
     const { rememberAddress, ...rest } = data;
+
     if (data.rememberAddress) {
       setUserAddress(rest, session!.user.id);
     } else {
+      deleteUserAddress(session!.user.id);
     }
   };
 

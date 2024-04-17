@@ -14,5 +14,6 @@ export * from "./ui/Sidebar/Sidebar";
 export * from "./ui/Title/Title";
 export * from "./ui/Top-menu/TopMenu";
 
-export * from "./provider/Provider"
+export * from "./providers/Providers"
 
+export * from "./paypal/PaypalButton"

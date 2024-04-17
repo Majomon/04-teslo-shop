@@ -2,6 +2,7 @@ import { Title } from "@/components";
 import Image from "next/image";
 import Link from "next/link";
 import { ProductsInCartCheckout } from "./ui/ProductsInCartCheckout";
+import { PlaceOrder } from "./ui/PlaceOrder";
 
 export default function CheckoutPage() {
   return (
@@ -21,54 +22,7 @@ export default function CheckoutPage() {
           </div>
 
           {/* Checkout - Resumen*/}
-          <div className="rounded-xl bg-white p-7 shadow-xl">
-            <h2 className="mb-2 text-2xl font-bold">Dirección de entrega</h2>
-            <div className="mb-6">
-              <p className="text-xl">Mauricio Monzón</p>
-              <p>Av. Siempre Viva 123</p>
-              <p>Col. Centro</p>
-              <p>Casanova</p>
-              <p>Buenos Aires</p>
-              <p>CP: 1665</p>
-              <p>123.123.123</p>
-            </div>
-
-            {/* Divider */}
-            <div className="mb-6 h-0.5 w-full rounded bg-gray-200" />
-
-            <h2 className="mb-2 text-2xl">Resumen de orden</h2>
-            <div className="grid grid-cols-2">
-              <span>No. Productos</span>
-              <span className="text-right">3 articulos</span>
-              <span>Sub. Total</span>
-              <span className="text-right">$100</span>
-              <span>Impuestos (15%)</span>
-              <span className="text-right">$100</span>
-              <span className="mt-5 text-2xl">Total:</span>
-              <span className="mt-5 text-right text-2xl">$100</span>
-            </div>
-            <div className="mb-2 mt-5 w-full">
-              <p className="mb-5">
-                {/* Disclaimer */}
-                <span className="text-xs">
-                  Al hacer click en {'"Colocar orden"'}, aceptas nuestros{" "}
-                  <a href="#" className="underline">
-                    términos y condiciones
-                  </a>{" "}
-                  y{" "}
-                  <a href="#" className="underline">
-                    política de privacidad
-                  </a>
-                </span>
-              </p>
-              <Link
-                className="btn-primary flex justify-center"
-                href={"/orders/123"}
-              >
-                Colocar orden
-              </Link>
-            </div>
-          </div>
+          <PlaceOrder />
         </div>
       </div>
     </div>

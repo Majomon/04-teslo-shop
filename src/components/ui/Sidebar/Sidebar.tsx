@@ -71,7 +71,8 @@ export const Sidebar = () => {
               <span className="ml-3 text-sm">Perfil</span>
             </Link>
             <Link
-              href={"/"}
+              href={"/orders"}
+              onClick={closeSideMenu}
               className="mt-4 flex items-center rounded p-2 transition-all hover:bg-gray-100"
             >
               <IoTicketOutline size={26} />

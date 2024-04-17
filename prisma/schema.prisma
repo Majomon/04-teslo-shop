@@ -78,13 +78,17 @@ model User {
   image         String?
 
   // Relaciones
+  // Uno a uno
   UserAddress UserAddress[]
+  // Uno a muchos
   Order       Order[]
 }
 
 model Country {
   id           String         @id
   name         String
+
+  // Relaciones
   UserAddress  UserAddress[]
   OrderAddress OrderAddress[]
 }

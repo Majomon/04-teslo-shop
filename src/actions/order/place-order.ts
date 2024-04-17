@@ -33,5 +33,25 @@ export const placeOrder = async (
 
   //   Calcular los montos  // Encabezado
   const itemsInOrder = productsId.reduce((count, p) => count + p.quantity, 0);
-  console.log(itemsInOrder);
+
+  //   Los totales de tax, subTotal y total
+  const { subTotal, tax, total } = productsId.reduce(
+    (totals, item) => {
+      const productQuantity = item.quantity;
+      const product = products.find((product) => product.id === item.productId);
+
+      if (!product) throw new Error(`${item.productId} no existe - 500`);
+
+      const subTotal = product.price * productQuantity;
+
+      totals.subTotal += subTotal;
+      totals.tax += subTotal * 0.15;
+      totals.total += subTotal * 1.15;
+
+      return totals;
+    },
+    { subTotal: 0, tax: 0, total: 0 },
+  );
+
+  //   Crear la transacción de la base de datos
 };

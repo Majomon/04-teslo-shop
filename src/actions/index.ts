@@ -7,3 +7,5 @@ export { getStockBySlug } from "./products/get-stock-by-slug";
 export { getPaginatedProductsWithImages } from "./products/product-pagination";
 
 export { getCountries } from "./country/get-countries";
+
+export * from "./address/set-user-address";

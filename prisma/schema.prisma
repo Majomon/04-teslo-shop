@@ -30,12 +30,10 @@ enum Role {
 }
 
 model Category {
-  id        String    @id @default(uuid())
-  name      String    @unique
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  id      String    @id @default(uuid())
+  name    String    @unique
   // Relacion de categoria con producto
-  Product   Product[]
+  Product Product[]
 }
 
 model Product {

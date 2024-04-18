@@ -1,7 +1,7 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
-import {  Gender, Product, Size } from "@prisma/client";
+import { Gender, Product, Size } from "@prisma/client";
 import { z } from "zod";
 
 const productSchema = z.object({
@@ -42,9 +42,7 @@ export const createUpdateProduct = async (formData: FormData) => {
     const tagsArray = rest.tags
       .split(",")
       .map((tag) => tag.trim().toLowerCase());
-
     if (id) {
-      // Actualizar
       // Actualizar
       product = await prisma.product.update({
         where: { id },
@@ -58,11 +56,22 @@ export const createUpdateProduct = async (formData: FormData) => {
           },
         },
       });
-
-      console.log({ updateProduct: product });
     } else {
       // Crear
+      product = await prisma.product.create({
+        data: {
+          ...rest,
+          sizes: {
+            set: rest.sizes as Size[],
+          },
+          tags: {
+            set: tagsArray,
+          },
+        },
+      });
     }
+    console.log({ updatedProduct: product });
+    return { product };
   });
 
   return { ok: true };

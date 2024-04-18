@@ -10,6 +10,7 @@ export const getProductBySlug = async (slug: string) => {
           // El campo que me voy a traer
           select: {
             url: true,
+            id: true,
           },
         },
       },

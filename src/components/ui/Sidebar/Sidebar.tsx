@@ -2,6 +2,7 @@
 import { logout } from "@/actions";
 import { useUiStore } from "@/store";
 import clsx from "clsx";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import {
   IoCloseOutline,
@@ -13,7 +14,6 @@ import {
   IoShirtOutline,
   IoTicketOutline,
 } from "react-icons/io5";
-import { useSession } from "next-auth/react";
 
 export const Sidebar = () => {
   const isSideMenuOpen = useUiStore((state) => state.isSideMenuOpen);
@@ -104,6 +104,7 @@ export const Sidebar = () => {
             {/* Line separator */}
             <div className="my-10 h-px w-full bg-gray-200">
               <Link
+                onClick={closeSideMenu}
                 href={"/"}
                 className="mt-4 flex items-center rounded p-2 transition-all hover:bg-gray-100"
               >
@@ -111,7 +112,8 @@ export const Sidebar = () => {
                 <span className="ml-3 text-sm">Productos</span>
               </Link>
               <Link
-                href={"/"}
+                href={"/admin/orders"}
+                onClick={closeSideMenu}
                 className="mt-4 flex items-center rounded p-2 transition-all hover:bg-gray-100"
               >
                 <IoTicketOutline size={26} />

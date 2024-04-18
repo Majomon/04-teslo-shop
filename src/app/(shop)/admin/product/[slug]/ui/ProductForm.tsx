@@ -1,6 +1,7 @@
 "use client";
 
 import { Category, Product } from "@/interfaces";
+import { useForm } from "react-hook-form";
 
 interface Props {
   product: Product;
@@ -9,19 +10,58 @@ interface Props {
 
 const sizes = ["XS", "S", "M", "L", "XL", "XXL"];
 
+interface FormInputs {
+  title: string;
+  slug: string;
+  description: string;
+  price: number;
+  inStock: number;
+  sizes: string[];
+  tags: string;
+  gender: "men" | "women" | "kid" | "unisex";
+  categoryId: string;
+}
+
 export const ProductForm = ({ product, categories }: Props) => {
+  const {
+    handleSubmit,
+    register,
+    formState: { isValid },
+  } = useForm<FormInputs>({
+    defaultValues: {
+      ...product,
+      tags: product.tags.join(","),
+      sizes: product.sizes ?? "",
+    },
+  });
+
+  const onSubmit = async (data: FormInputs) => {
+    console.log(data);
+  };
+
   return (
-    <form className="mb-16 grid grid-cols-1 gap-3 px-5 sm:grid-cols-2 sm:px-0">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="mb-16 grid grid-cols-1 gap-3 px-5 sm:grid-cols-2 sm:px-0"
+    >
       {/* Textos */}
       <div className="w-full">
         <div className="mb-2 flex flex-col">
           <span>Título</span>
-          <input type="text" className="rounded-md border bg-gray-200 p-2" />
+          <input
+            type="text"
+            className="rounded-md border bg-gray-200 p-2"
+            {...register("title", { required: true })}
+          />
         </div>
 
         <div className="mb-2 flex flex-col">
           <span>Slug</span>
-          <input type="text" className="rounded-md border bg-gray-200 p-2" />
+          <input
+            type="text"
+            className="rounded-md border bg-gray-200 p-2"
+            {...register("slug", { required: true })}
+          />
         </div>
 
         <div className="mb-2 flex flex-col">
@@ -29,22 +69,34 @@ export const ProductForm = ({ product, categories }: Props) => {
           <textarea
             rows={5}
             className="rounded-md border bg-gray-200 p-2"
+            {...register("description", { required: true })}
           ></textarea>
         </div>
 
         <div className="mb-2 flex flex-col">
           <span>Price</span>
-          <input type="number" className="rounded-md border bg-gray-200 p-2" />
+          <input
+            type="number"
+            className="rounded-md border bg-gray-200 p-2"
+            {...register("price", { required: true, min: 0 })}
+          />
         </div>
 
         <div className="mb-2 flex flex-col">
           <span>Tags</span>
-          <input type="text" className="rounded-md border bg-gray-200 p-2" />
+          <input
+            type="text"
+            className="rounded-md border bg-gray-200 p-2"
+            {...register("tags", { required: true })}
+          />
         </div>
 
         <div className="mb-2 flex flex-col">
           <span>Gender</span>
-          <select className="rounded-md border bg-gray-200 p-2">
+          <select
+            className="rounded-md border bg-gray-200 p-2"
+            {...register("gender", { required: true })}
+          >
             <option value="">[Seleccione]</option>
             <option value="men">Men</option>
             <option value="women">Women</option>
@@ -55,7 +107,10 @@ export const ProductForm = ({ product, categories }: Props) => {
 
         <div className="mb-2 flex flex-col">
           <span>Categoria</span>
-          <select className="rounded-md border bg-gray-200 p-2">
+          <select
+            className="rounded-md border bg-gray-200 p-2"
+            {...register("categoryId", { required: true })}
+          >
             <option value="">[Seleccione]</option>
             {categories.map((category) => (
               <option key={category.id} value={category.id}>

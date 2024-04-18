@@ -23,4 +23,6 @@ export { paypalCheckPayment } from "./payments/paypal-payment";
 export { getPaginatedUsers } from "./users/get-paginated-users";
 export { changeUserRol } from "./users/change-user-rol";
 
-export {getCategories} from "./category/get-categories"
+export { getCategories } from "./category/get-categories";
+
+export { createUpdateProduct } from "./products/create-update-product";

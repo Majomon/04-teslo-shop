@@ -30,30 +30,27 @@ enum Role {
 }
 
 model Category {
-  id        String    @id @default(uuid())
-  name      String    @unique
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  // Relacion de categoria con producto
-  Product   Product[]
+  id      String    @id @default(uuid())
+  name    String    @unique
+  Product Product[]
 }
 
 model Product {
-  id           String         @id @default(uuid())
-  title        String
-  description  String
-  inStock      Int
-  price        Float          @default(0)
-  sizes        Size[]
-  slug         String         @unique
-  tags         String[]       @default([])
-  gender       Gender
-  createdAt    DateTime       @default(now())
-  updatedAt    DateTime       @updatedAt
-  // Relacion de producto con categoria
-  category     Category       @relation(fields: [categoryId], references: [id])
-  categoryId   String
-  // Relacion de producto con imagen
+  id          String   @id @default(uuid())
+  title       String
+  description String
+  inStock     Int
+  price       Float    @default(0)
+  sizes       Size[]   @default([])
+  slug        String   @unique
+  tags        String[] @default([])
+  gender      Gender
+
+  // Relaciones
+
+  category   Category @relation(fields: [categoryId], references: [id])
+  categoryId String
+
   ProductImage ProductImage[]
   OrderItem    OrderItem[]
 
@@ -77,18 +74,16 @@ model User {
   role          Role      @default(user)
   image         String?
 
+  address UserAddress?
+
   // Relaciones
-  // Uno a uno
-  UserAddress UserAddress[]
-  // Uno a muchos
-  Order       Order[]
+  Order Order[]
 }
 
 model Country {
   id   String @id
   name String
 
-  // Relaciones
   UserAddress  UserAddress[]
   OrderAddress OrderAddress[]
 }
@@ -111,7 +106,7 @@ model UserAddress {
   userId String @unique
 }
 
-// Orden de compras
+// Order de compras
 model Order {
   id           String    @id @default(uuid())
   subTotal     Float
@@ -125,8 +120,9 @@ model Order {
   updatedAt DateTime @updatedAt
 
   // Relaciones
-  user         User          @relation(fields: [userId], references: [id])
-  userId       String
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+
   OrderItem    OrderItem[]
   OrderAddress OrderAddress?
 
@@ -161,6 +157,6 @@ model OrderAddress {
   country   Country @relation(fields: [countryId], references: [id])
   countryId String
 
-  order   Order  @relation(fields: [orderId], references: [id])
+  Order   Order  @relation(fields: [orderId], references: [id])
   orderId String @unique
 }

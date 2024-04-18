@@ -116,7 +116,7 @@ export default async function OrdersIdPage({ params }: Props) {
               </span>
             </div>
             <div className="mb-2 mt-5 w-full">
-              <PaypalButton />
+              <PaypalButton amount={order!.total} orderId={order!.id} />
             </div>
           </div>
         </div>

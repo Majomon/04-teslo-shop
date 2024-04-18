@@ -1,11 +1,9 @@
 import { getOrderById } from "@/actions";
-import { PaypalButton, Title } from "@/components";
+import { OrderStatus, PaypalButton, Title } from "@/components";
 
 import { currencyFormat } from "@/utils";
-import clsx from "clsx";
 import Image from "next/image";
 import { redirect } from "next/navigation";
-import { IoCartOutline } from "react-icons/io5";
 
 interface Props {
   params: {
@@ -32,21 +30,7 @@ export default async function OrdersIdPage({ params }: Props) {
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2">
           {/* Carrito */}
           <div className="mt-5 flex flex-col">
-            <div
-              className={clsx(
-                "mb-5 flex items-center rounded-lg px-3.5 py-2 text-xs font-bold text-white",
-                {
-                  "bg-red-500": !order!.isPaid,
-                  "bg-green-700": order!.isPaid,
-                },
-              )}
-            >
-              <IoCartOutline size={30} />
-              {/* <span className="mx-2">Pendiente</span> */}
-              <span className="mx-2">
-                {order?.isPaid ? "Pagada" : "No pagada"}
-              </span>
-            </div>
+            <OrderStatus isPaid={order!.isPaid} />
             {/* Items */}
             {order!.OrderItem.map((item) => (
               <div
@@ -116,7 +100,11 @@ export default async function OrdersIdPage({ params }: Props) {
               </span>
             </div>
             <div className="mb-2 mt-5 w-full">
-              <PaypalButton amount={order!.total} orderId={order!.id} />
+              {order?.isPaid ? (
+                <OrderStatus isPaid={order!.isPaid} />
+              ) : (
+                <PaypalButton amount={order!.total} orderId={order!.id} />
+              )}
             </div>
           </div>
         </div>

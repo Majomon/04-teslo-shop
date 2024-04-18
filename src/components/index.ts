@@ -17,3 +17,5 @@ export * from "./ui/Top-menu/TopMenu";
 export * from "./providers/Providers"
 
 export * from "./paypal/PaypalButton"
+
+export * from "./orders/OrderStatus"

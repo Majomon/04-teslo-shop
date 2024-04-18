@@ -6,6 +6,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "tailus.io",
       },
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+      },
     ],
   },
 };

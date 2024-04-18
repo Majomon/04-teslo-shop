@@ -23,14 +23,9 @@ export async function generateMetadata(
   { params }: Props,
   parent: ResolvingMetadata,
 ): Promise<Metadata> {
-  // read route params
   const slug = params.slug;
 
-  // fetch data
   const product = await getProductBySlug(slug);
-
-  // optionally access and extend (rather than replace) parent metadata
-  // const previousImages = (await parent).openGraph?.images || [];
 
   return {
     title: product?.title ?? "Producto no encontrado",

@@ -30,10 +30,12 @@ enum Role {
 }
 
 model Category {
-  id      String    @id @default(uuid())
-  name    String    @unique
+  id        String    @id @default(uuid())
+  name      String    @unique
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
   // Relacion de categoria con producto
-  Product Product[]
+  Product   Product[]
 }
 
 model Product {
@@ -100,9 +102,10 @@ model UserAddress {
   postalCode String
   phone      String
   city       String
+
   // Relaciones
-  country    Country @relation(fields: [countryId], references: [id])
-  countryId  String
+  country   Country @relation(fields: [countryId], references: [id])
+  countryId String
 
   user   User   @relation(fields: [userId], references: [id])
   userId String @unique

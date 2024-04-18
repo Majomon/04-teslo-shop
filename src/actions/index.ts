@@ -5,6 +5,8 @@ export { registerUser } from "./auth/register";
 export { getProductBySlug } from "./products/get-product-by-slug";
 export { getStockBySlug } from "./products/get-stock-by-slug";
 export { getPaginatedProductsWithImages } from "./products/product-pagination";
+export { createUpdateProduct } from "./products/create-update-product";
+export {deleteProductImage} from "./products/delete-product-image"
 
 export { getCountries } from "./country/get-countries";
 
@@ -25,4 +27,3 @@ export { changeUserRol } from "./users/change-user-rol";
 
 export { getCategories } from "./category/get-categories";
 
-export { createUpdateProduct } from "./products/create-update-product";

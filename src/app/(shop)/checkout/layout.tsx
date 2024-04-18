@@ -10,7 +10,7 @@ export default async function CheckoutLayout({
 
   if (!session?.user) {
     // redirect("/auth/login?redirectTo=/checkout/adress");
-    redirect("/");
+    redirect("/auth/login");
   }
   return <>{children}</>;
 }

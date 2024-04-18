@@ -46,7 +46,7 @@ export const AdressForm = ({ countries, userStoredAddress = {} }: Props) => {
     if (address.firstName) {
       reset(address);
     }
-  }, [address]);
+  }, [address, reset]);
 
   const onSubmit = async (data: FormInputs) => {
     const { rememberAddress, ...rest } = data;
@@ -61,7 +61,6 @@ export const AdressForm = ({ countries, userStoredAddress = {} }: Props) => {
     router.push("/checkout");
   };
 
- 
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}

@@ -2,7 +2,7 @@ export const revalidate = 0;
 
 // https://tailwindcomponents.com/component/hoverable-table
 import { getPaginatedUsers } from "@/actions";
-import { Title } from "@/components";
+import { Pagination, Title } from "@/components";
 
 import { redirect } from "next/navigation";
 import { UsersTable } from "./ui/UsersTable";
@@ -20,6 +20,7 @@ export default async function OrdersAdminPage() {
 
       <div className="mb-10">
         <UsersTable users={users} />
+        <Pagination totalPages={1} />
       </div>
     </>
   );

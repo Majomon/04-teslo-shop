@@ -8,7 +8,7 @@ export interface Product {
   slug: string;
   tags: string[];
   title: string;
-  // type: Type;
+  //todo: type: Type;
   gender: Category;
 }
 
@@ -23,7 +23,7 @@ export interface CartProduct {
 }
 
 export interface ProductImage {
-  id: string;
+  id: number;
   url: string;
   productId: string;
 }

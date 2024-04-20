@@ -4,9 +4,7 @@ import { getProductBySlug } from "@/actions";
 import {
   ProductMobileSlideShow,
   ProductSlideShow,
-  QuantitySelector,
-  SizeSelector,
-  StockLabel,
+  StockLabel
 } from "@/components";
 import { titleFont } from "@/config/fonts";
 import { Metadata, ResolvingMetadata } from "next";

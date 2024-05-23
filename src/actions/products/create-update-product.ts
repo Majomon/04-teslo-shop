@@ -44,7 +44,7 @@ export const createUpdateProduct = async (formData: FormData) => {
       let product: Product;
       const tagsArray = rest.tags
         .split(",")
-        .map((tag:any) => tag.trim().toLowerCase());
+        .map((tag: any) => tag.trim().toLowerCase());
       if (id) {
         // Actualizar
         product = await prisma.product.update({

@@ -2,6 +2,7 @@
 
 import { Footer, Sidebar, TopMenu } from "@/components";
 
+
 export default function ShopLayout({
   children,
 }: {

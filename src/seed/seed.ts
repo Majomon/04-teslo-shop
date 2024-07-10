@@ -48,6 +48,11 @@ export const initialData: SeedData = {
       name: "Luna",
       password: bcryptjs.hashSync("123123", 10),
       role: "user",
+    },  {
+      email: "test@test.com",
+      name: "Test",
+      password: bcryptjs.hashSync("123123", 10),
+      role: "user",
     },
   ],
   categories: ["Shirts", "Pants", "Hoodies", "Hats"],

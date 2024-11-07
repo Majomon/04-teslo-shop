@@ -11,8 +11,6 @@ CREATE TYPE "Role" AS ENUM ('admin', 'user');
 CREATE TABLE "Category" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "Category_pkey" PRIMARY KEY ("id")
 );
@@ -24,12 +22,10 @@ CREATE TABLE "Product" (
     "description" TEXT NOT NULL,
     "inStock" INTEGER NOT NULL,
     "price" DOUBLE PRECISION NOT NULL DEFAULT 0,
-    "sizes" "Size"[],
+    "sizes" "Size"[] DEFAULT ARRAY[]::"Size"[],
     "slug" TEXT NOT NULL,
     "tags" TEXT[] DEFAULT ARRAY[]::TEXT[],
     "gender" "Gender" NOT NULL,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL,
     "categoryId" TEXT NOT NULL,
 
     CONSTRAINT "Product_pkey" PRIMARY KEY ("id")
